@@ -1,0 +1,7 @@
+blue:
+  tag: "1.0.0"
+
+green:
+  tag: "1.0.0"
+
+live: "blue"

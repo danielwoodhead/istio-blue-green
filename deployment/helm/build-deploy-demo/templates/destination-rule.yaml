@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: istio-demo
+spec:
+  host: istio-demo
+  subsets:
+  - name: blue
+    labels:
+      colour: blue
+  - name: green
+    labels:
+      colour: green

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: istio-demo
+spec:
+  selector:
+    app: istio-demo
+  ports:
+    - port: 3000
+      name: http

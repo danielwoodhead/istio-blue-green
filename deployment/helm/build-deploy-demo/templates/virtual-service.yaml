@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-demo
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - istio-demo-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /demo
+      queryParams:
+        staging:
+          exact: "true"
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: istio-demo
+        subset: {{ ternary "blue" "green" (eq .Values.live "green") }}
+        port:
+          number: 3000
+  - match:
+    - uri:
+        prefix: /demo
+    rewrite:
+      uri: "/"
+    route:
+    - destination:
+        host: istio-demo
+        subset: {{ .Values.live }}
+        port:
+          number: 3000

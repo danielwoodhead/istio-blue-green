@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-demo-blue
+data:
+  APP_VERSION: {{ .Values.blue.tag }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-demo-green
+data:
+  APP_VERSION: {{ .Values.green.tag }}

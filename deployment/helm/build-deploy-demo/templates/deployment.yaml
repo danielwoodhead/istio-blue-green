@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-demo-blue
+  labels:
+    app: istio-demo
+    colour: blue
+    stage: {{ ternary "live" "staging" (eq .Values.live "blue") }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-demo
+      colour: blue
+  template:
+    metadata:
+      labels:
+        app: istio-demo
+        colour: blue
+    spec:
+      containers:
+        - name: istio-demo
+          image: istio-demo:{{ .Values.blue.tag }}
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 3000
+          envFrom:
+          - configMapRef:
+              name: istio-demo-blue
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-demo-green
+  labels:
+    app: istio-demo
+    colour: green
+    stage: {{ ternary "live" "staging" (eq .Values.live "green") }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-demo
+      colour: green
+  template:
+    metadata:
+      labels:
+        app: istio-demo
+        colour: green
+    spec:
+      containers:
+        - name: istio-demo
+          image: istio-demo:{{ .Values.green.tag }}
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 3000
+          envFrom:
+          - configMapRef:
+              name: istio-demo-green

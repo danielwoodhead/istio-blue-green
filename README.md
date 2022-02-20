@@ -52,7 +52,7 @@ $ curl http://localhost/demo?staging=true
 This is v2.0.0
 ```
 
-Swap the colours:
+Swap the colours
 
 ```
 helm upgrade --install --reuse-values --set live=green istio-demo ./deployment/helm/istio-demo

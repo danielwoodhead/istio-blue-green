@@ -29,6 +29,9 @@ Get the current live colour
 
 ```
 kubectl get deployments --selector=stage=live -o jsonpath='{.items[*].metadata.labels.colour}'
+```
+
+```
 blue
 ```
 
@@ -40,15 +43,21 @@ helm upgrade --install --reuse-values --set green.tag=2.0.0 istio-demo ./deploym
 
 Make a call against the live version
 
-```bash
+```
 curl http://localhost/demo
+```
+
+```
 This is v1.0.0
 ```
 
 Make a call against the staging version
 
-```bash
-$ curl http://localhost/demo?staging=true
+```
+curl http://localhost/demo?staging=true
+```
+
+```
 This is v2.0.0
 ```
 
@@ -60,14 +69,20 @@ helm upgrade --install --reuse-values --set live=green istio-demo ./deployment/h
 
 Make a call against the live version
 
-```bash
+```
 curl http://localhost/demo
+```
+
+```
 This is v2.0.0
 ```
 
 Make a call against the staging version
 
-```bash
-$ curl http://localhost/demo?staging=true
+```
+curl http://localhost/demo?staging=true
+```
+
+```
 This is v1.0.0
 ```

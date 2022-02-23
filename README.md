@@ -1,9 +1,12 @@
 # Blue-green deployments
 
-Blue-green deployments with:
+Blue-green deployments with Istio & Helm
 
-- istio
-- helm
+## Prerequisites
+
+- [a local Kubernetes cluster](https://docs.docker.com/desktop/kubernetes/)
+- [Istio installed in the cluster](https://istio.io/latest/docs/setup/getting-started/)
+- [Helm](https://helm.sh/docs/intro/install/)
 
 ## Instructions
 
